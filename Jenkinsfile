@@ -1,15 +1,10 @@
 pipeline {
-   agent { docker { image 'node:14.17.0-alpine3.13' }}
+   agent any
     stages {
         stage('Build') {
             steps {
-                sh 'yarn build'
+                sh 'docker build -t backstage:latest .'
             }
-        }
-        stage('Build Docker image') {
-           steps {
-                sh 'yarn workspace backend build-image'
-           }
         }
     }
 }
